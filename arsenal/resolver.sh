@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dir=/root/Recon/$1
+dir=/root/workspace/$1
 mkdir $dir
 
 subfinder -d $1 > $dir/$1_subd;
