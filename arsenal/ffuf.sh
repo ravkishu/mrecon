@@ -9,3 +9,5 @@ ffuf -t 80 -c -sf -fc '404,429,501,502,503' -H "X-Forwarded-For: 127.0.0.1" -H "
 
 # cat $dir/$1.tmp | jq '[.results[]|{status: .status, length: .length, url: .url}]' | grep -oP "status\":\s(\d{3})|length\":\s(\d{1,7})|url\":\s\"(http[s]?:\/\/.*?)\"" | paste -d' ' - - - | awk '{print $2" "$4" "$6}' | sed 's/\"//g' > $dir/result_dir.txt
 cat $dir/$1_ffuf_raw.tmp | csvcut -c 2,5,1,3,4 | csvlook | tee $dir/$1_ffuf_beautify
+# Below is better
+# cat $dir/$1_ffuf_raw.tmp | csvcut -c 2,5,1,3,4,6-9 | csvlook | tee $dir/$1_ffuf_beautify
